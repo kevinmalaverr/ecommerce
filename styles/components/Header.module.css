@@ -1,0 +1,28 @@
+.header {
+  display: grid;
+  grid-template-areas:
+    'menu title cart'
+    'searchbar searchbar searchbar';
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+}
+
+.menu {
+  grid-area: menu;
+}
+
+.title {
+  grid-area: title;
+}
+
+.searchbar {
+  grid-area: searchbar;
+}
+
+.cart {
+  grid-area: cart;
+}
+
+.itemList {
+  display: none;
+}
