@@ -1,13 +1,11 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import Head from 'next/head'
+import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import AppContext from '../context/AppContext'
-import {useContext} from 'react'
-import cart from './cart';
+import { useContext } from 'react'
+import cart from './cart'
 
-export default function Home(){
-  const {addToCart, state: {cart}} = useContext(AppContext)
-
+export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -16,17 +14,12 @@ export default function Home(){
       </Head>
 
       <main className={styles.main}>
-        {
-          cart.map(item=>(
-            <button onClick={()=>{addToCart(item)}}>{ item.name}</button>
-          ))
-        }
-      <Link href="/cart">
-        <a>About</a>
-      </Link>
+        <Link href="/cart">
+          <a>About</a>
+        </Link>
       </main>
 
       <footer className={styles.footer}></footer>
     </div>
-  );
+  )
 }

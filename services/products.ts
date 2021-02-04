@@ -1,23 +1,23 @@
 import axios from 'axios'
 
 interface Product {
-  id: number
+  id?: number
   name: string
   description: string
 }
 
-const route = `${process.env.APi_URL}/products`
+const ROUTE = `${process.env.APi_URL}/products`
 
 async function getAll(): Promise<Product[]> {
   try {
-    const response = axios.get(route)
-    return response
+    const response = await axios.get(ROUTE)
+    return response.data
   } catch (error) {
     return error
   }
 }
 
-async function get(): Product {
+async function get(): Promise<Product> {
   return
 }
 

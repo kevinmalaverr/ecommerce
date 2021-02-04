@@ -1,32 +1,32 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
-const useInitialState = ():Object => {
+const useInitialState = (): Object => {
   const [state, setState] = useState({
     cart: [
-      {id:1,name: 'nombre'},
-      {id:2,name: 'otro nombre'}
+      { id: 1, name: 'nombre' },
+      { id: 2, name: 'otro nombre' },
     ],
-  });
+  })
 
   const addToCart = (payload) => {
     setState({
       ...state,
       cart: [...state.cart, payload],
-    });
-  };
+    })
+  }
 
   const removeFromCart = (payload) => {
     setState({
       ...state,
-      cart: state.cart.filter(item=>item.id !== payload.id)
-    });
-  };
+      cart: state.cart.filter((item) => item.id !== payload.id),
+    })
+  }
 
   return {
     state,
     addToCart,
-    removeFromCart
+    removeFromCart,
   }
-};
+}
 
-export default useInitialState;
+export default useInitialState

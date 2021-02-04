@@ -4,25 +4,114 @@
     'menu title cart'
     'searchbar searchbar searchbar';
   grid-template-columns: auto 1fr auto;
+  align-items: center;
   gap: 1rem;
 }
 
 .menu {
   grid-area: menu;
+  height: 1.8rem;
+  width: 1.8rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-grey);
 }
 
 .title {
   grid-area: title;
+  font-family: 'Playfair Display', serif;
 }
 
 .searchbar {
   grid-area: searchbar;
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-grey);
+  color: #919394;
+  border-radius: 10px;
+  width: 100%;
+  padding: .3rem 1rem;
+  border-bottom: 1px solid transparent;
+}
+
+.searchbar:focus-within{
+  border-color:#00086D;
+}
+
+.searchbar input {
+  background-color: transparent;
+  outline: none;
+  flex-grow: 1;
 }
 
 .cart {
   grid-area: cart;
+  justify-self: end;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--color-grey);
+  border-radius: 50%;
+  position: relative;
+}
+
+.cart:hover{
+  background-color: var(--color-grey-hover);
+}
+
+.cartNotification::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #00086D;
+  border-radius: 50%;
 }
 
 .itemList {
+  grid-area: itemList;
   display: none;
+  gap: 2rem;
+}
+
+/* media queries */
+
+@screen md {
+  .header {
+    grid-template-areas: 'title _ searchbar cart' 'itemList itemList itemList itemList';
+    grid-template-columns: auto 1fr auto auto;
+    gap: 1rem;
+    padding: 1rem 3rem;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .itemList {
+    display: flex;
+    justify-self: center;
+  }
+}
+
+
+@screen lg {
+  .header {
+    grid-template-areas: 'title itemList searchbar cart';
+    grid-template-columns: auto 1fr auto auto;
+  }
+
+  .itemList{
+    background-color: transparent;
+    justify-self: end;
+  }
+
+
 }
