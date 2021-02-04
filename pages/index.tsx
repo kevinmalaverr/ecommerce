@@ -1,25 +1,23 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-import AppContext from '../context/AppContext'
-import { useContext } from 'react'
-import cart from './cart'
+import styles from '@/styles/components'
+import Hero from '@/components/Hero'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>furniture</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Link href="/cart">
-          <a>About</a>
-        </Link>
+      <main className="container">
+        <section>
+          <Hero />
+        </section>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel quibusdam illo, voluptate
+        voluptates cupiditate illum commodi iure natus ea consectetur officiis dolorem ex dolor quis
+        quod, sint at inventore molestiae.
       </main>
-
-      <footer className={styles.footer}></footer>
     </div>
   )
 }

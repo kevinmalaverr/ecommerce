@@ -1,42 +1,42 @@
 import React from 'react'
 import s from '../styles/components/Header.module.css'
-import Link from 'next/link'
+import ActiveLink from './ActiveLink'
 
 // icons
-import IconSearch from './icons/search'
-import IconCart from './icons/cart'
-import IconMenu from './icons/menu'
+import IconSearch from '@/icons/search'
+import IconCart from '@/icons/cart'
+import IconMenu from '@/icons/menu'
 
-const Header = () => {
+const Header = (): JSX.Element => {
   return (
     <header className={`p-4 ${s.header}`}>
       <button className={`${s.menu} text-lg`}>
         <IconMenu />
       </button>
-      <Link href="/">
+      <ActiveLink href="/">
         <a className={s.title}>
           <b className="text-lg leading-none">Muebles Willys.</b>
         </a>
-      </Link>
+      </ActiveLink>
       <ul className={s.itemList}>
         <li>
-          <Link href="/">
-            <a>muebles</a>
-          </Link>
+          <ActiveLink href="/">
+            <a>Muebles</a>
+          </ActiveLink>
         </li>
         <li>
-          <Link href="/custom">
-            <a>a la medida</a>
-          </Link>
+          <ActiveLink href="/custom">
+            <a>A la medida</a>
+          </ActiveLink>
         </li>
         <li>
-          <Link href="/contacto">
-            <a>contacto</a>
-          </Link>
+          <ActiveLink href="/contacto">
+            <a>Contacto</a>
+          </ActiveLink>
         </li>
       </ul>
       <form className={`${s.searchbar}`}>
-        <input type="text" aria-label="Filter projects" placeholder="Filter projects" />
+        <input type="text" placeholder="Buscar" />
         <IconSearch />
       </form>
       <button className={`${s.cart} ${s.cartNotification} text-lg`}>
