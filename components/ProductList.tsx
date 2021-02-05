@@ -1,9 +1,7 @@
 import React from 'react'
 import ProductCard from './ProductCard'
-import { products } from '@/__mocks__/products'
 
-const ProductList = () => {
-  console.log(products)
+const ProductList = ({ products = [] }) => {
   return (
     <div>
       {products.map((product) => (

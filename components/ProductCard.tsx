@@ -9,7 +9,11 @@ const ProductCard = ({ product }): JSX.Element => {
     <article className={style.productCard}>
       <Link href={`/product/${product.url}`}>
         <a>
-          <Image src={`${process.env.API_URL}/${product.images[0].url}`} width={108} height={144} />
+          <Image
+            src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0].url}`}
+            width={108}
+            height={144}
+          />
           <p>Chair</p>
           <p>
             {numberToPrice(900000)}{' '}
