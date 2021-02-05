@@ -1,0 +1,9 @@
+.productCard {
+  background-color: var(--color-light-blue);
+  border-radius: 10px;
+}
+
+.beforePrice{
+  color: gray;
+  text-decoration: line-through;
+}

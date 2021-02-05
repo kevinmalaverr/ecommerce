@@ -6,7 +6,7 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   row-gap: 1rem;
-  column-gap: 2rem;
+  column-gap: 1.5rem;
 }
 
 .menu {
@@ -42,7 +42,7 @@
 }
 
 .searchbar:focus-within{
-  box-shadow: 0 2px 3px 0px #000a444f;
+  box-shadow: 0 1px 3px 0px #000a444f;
 }
 
 .searchbar input {
@@ -79,7 +79,7 @@
   right: 0;
   width: 12px;
   height: 12px;
-  background-color: #00086D;
+  background-color: var(--color-blue);
   border-radius: 50%;
 }
 

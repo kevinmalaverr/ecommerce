@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import styles from '@/styles/components'
 import Hero from '@/components/Hero'
+import ProductList from '@/components/ProductList'
 
 export default function Home() {
   return (
@@ -9,14 +10,9 @@ export default function Home() {
         <title>furniture</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <Hero />
       <main className="container">
-        <section>
-          <Hero />
-        </section>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vel quibusdam illo, voluptate
-        voluptates cupiditate illum commodi iure natus ea consectetur officiis dolorem ex dolor quis
-        quod, sint at inventore molestiae.
+        <ProductList />
       </main>
     </div>
   )

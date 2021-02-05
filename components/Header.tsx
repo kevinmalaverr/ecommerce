@@ -39,7 +39,7 @@ const Header = (): JSX.Element => {
         <input type="text" placeholder="Buscar" />
         <IconSearch />
       </form>
-      <button className={`${s.cart} ${s.cartNotification} text-lg`}>
+      <button className={`${s.cart} text-lg`}>
         <IconCart />
       </button>
     </header>

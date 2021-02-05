@@ -6,6 +6,9 @@
 :root {
   --color-grey: #F5F8FA;
   --color-grey-hover:#dae2e7;
+  --color-blue: #000DAE;
+  --color-blue-hover:#00086D;
+  --color-light-blue:#FAFDFF;
 }
 
 * {
@@ -30,4 +33,14 @@ button:focus {
   width: 100%;
   max-width: 1000px;
   margin: auto;
+}
+
+.btn-1 {
+  background-color: var(--color-blue);
+  color: #fff;
+  padding: 1rem;
+}
+
+.btn-1:hover {
+  background-color: var(--color-blue-hover);
 }
