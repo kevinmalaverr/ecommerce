@@ -1,12 +1,13 @@
 import { useState } from 'react'
 
-const useInitialState = (): Object => {
-  const [state, setState] = useState({
-    cart: [
-      { id: 1, name: 'nombre' },
-      { id: 2, name: 'otro nombre' },
-    ],
-  })
+interface useInitialStateReturn {
+  state: object
+  addToCart: Function
+  removeFromCart: Function
+}
+
+const useInitialState = (initialState): useInitialStateReturn => {
+  const [state, setState] = useState(initialState)
 
   const addToCart = (payload) => {
     setState({

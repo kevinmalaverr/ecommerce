@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import Link from 'next/link'
 import s from '../styles/components/Header.module.css'
 import ActiveLink from './ActiveLink'
+import AppContext from 'context/AppContext'
 
 // icons
 import IconSearch from '@/icons/search'
@@ -8,6 +10,10 @@ import IconCart from '@/icons/cart'
 import IconMenu from '@/icons/menu'
 
 const Header = (): JSX.Element => {
+  const {
+    state: { cart },
+  } = useContext(AppContext)
+
   return (
     <header className={`p-4 ${s.header}`}>
       <button className={`${s.menu} text-lg`}>
@@ -15,7 +21,7 @@ const Header = (): JSX.Element => {
       </button>
       <ActiveLink href="/">
         <a className={s.title}>
-          <b className="text-lg leading-none">Muebles Willys.</b>
+          <b className="text-lg leading-none">Muebles Willys</b>
         </a>
       </ActiveLink>
       <ul className={s.itemList}>
@@ -39,9 +45,12 @@ const Header = (): JSX.Element => {
         <input type="text" placeholder="Buscar" />
         <IconSearch />
       </form>
-      <button className={`${s.cart} text-lg`}>
-        <IconCart />
-      </button>
+      <Link href="/cart">
+        <a className={`${s.cart} text-lg`}>
+          <IconCart />
+          {cart.length}
+        </a>
+      </Link>
     </header>
   )
 }

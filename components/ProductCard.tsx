@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { numberToPrice } from '@/utils/numberToPrice'
 
-const ProductCard = ({ product }): JSX.Element => {
+const ProductCard = ({ product, handleAddToCart }): JSX.Element => {
   return (
     <article className={style.productCard}>
       <Link href={`/product/${product.url}`}>
@@ -14,13 +14,14 @@ const ProductCard = ({ product }): JSX.Element => {
             width={108}
             height={144}
           />
-          <p>Chair</p>
+          <p>{product.name}</p>
           <p>
-            {numberToPrice(900000)}{' '}
+            {numberToPrice(product.price)}{' '}
             <span className={style.beforePrice}>{numberToPrice(990000)}</span>
           </p>
         </a>
       </Link>
+      <button onClick={() => handleAddToCart(product)}>comparar</button>
     </article>
   )
 }

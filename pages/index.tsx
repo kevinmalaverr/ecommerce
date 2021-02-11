@@ -2,10 +2,9 @@ import Head from 'next/head'
 import styles from '@/styles/components/Home.module.css'
 import Hero from '@/components/Hero'
 import ProductList from '@/components/ProductList'
-import { products } from '@/__mocks__/products'
 import { fetchData } from '@/utils/fetchData'
 
-export default function Home({ products }) {
+export default function Home() {
   return (
     <div>
       <Head>
@@ -14,7 +13,7 @@ export default function Home({ products }) {
       </Head>
       <Hero />
       <main className="container">
-        <ProductList products={products} />
+        <ProductList />
       </main>
     </div>
   )

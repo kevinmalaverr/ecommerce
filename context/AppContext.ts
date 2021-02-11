@@ -1,6 +1,13 @@
 import React from 'react'
-import { Context } from 'vm'
 
-const AppContext = React.createContext({})
+interface Context {}
+
+class Context {
+  state
+  addToCart
+  removeFromCart
+}
+
+const AppContext = React.createContext(new Context())
 
 export default AppContext
