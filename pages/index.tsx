@@ -4,6 +4,9 @@ import Hero from '@/components/Hero'
 import ProductList from '@/components/ProductList'
 import { fetchData } from '@/utils/fetchData'
 
+import WhatsAppWidget from 'react-whatsapp-widget'
+import 'react-whatsapp-widget/dist/index.css'
+
 export default function Home() {
   return (
     <div>
@@ -14,6 +17,13 @@ export default function Home() {
       <Hero />
       <main className="container">
         <ProductList />
+        <WhatsAppWidget
+          textReplyTime="activo"
+          companyName="Muebles Willys"
+          message={`¡Hola! 👋🏼\n¿En qué te puedo ayudar?`}
+          sendButton="Enviar"
+          phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_PHONE}
+        />
       </main>
     </div>
   )
