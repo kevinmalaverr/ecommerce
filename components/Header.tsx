@@ -1,8 +1,9 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Link from 'next/link'
 import s from '../styles/components/Header.module.css'
 import ActiveLink from './ActiveLink'
 import { useStore } from 'context/Store'
+import SearchDropDown from './SearchBar'
 
 // icons
 import IconSearch from '@/icons/search'
@@ -49,11 +50,6 @@ const Header = (): JSX.Element => {
             <a>Muebles</a>
           </ActiveLink>
         </li>
-        {/* <li>
-          <ActiveLink href="/custom">
-            <a>A la medida</a>
-          </ActiveLink>
-        </li> */}
         <li>
           <ActiveLink href="/contacto">
             <a>Contacto</a>
@@ -66,10 +62,11 @@ const Header = (): JSX.Element => {
           placeholder="Buscar"
           ref={searchbar}
           onChange={change}
-          onBlur={() => setShowList(false)}
+          // onBlur={() => setShowList(false)}
           onFocus={() => setShowList(true)}
         />
         <IconSearch />
+        <SearchDropDown show={showList} list={coincidences} search={searchbar.current?.value} />
       </form>
 
       <Link href="/cart">

@@ -24,7 +24,7 @@ const ProductCard = ({ product }): JSX.Element => {
       <div className="px-4 py-2 text-center">
         <p className="text-xl font-bold">{product.name}</p>
         <p>
-          {numberToPrice(product.price)}{' '}
+          <span className="font-medium">{numberToPrice(product.price)} </span>
           {product.oldPrice ? (
             <span className={styles.beforePrice}>{numberToPrice(product.oldPrice)}</span>
           ) : null}
