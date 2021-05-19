@@ -42,3 +42,7 @@ const cart = () => {
 }
 
 export default cart
+
+export async function getStaticProps(): Promise<{ props: object }> {
+  return { props: { title: 'My Title', content: '...' } }
+}

@@ -3,13 +3,10 @@ import styles from '@/styles/components/ProductCard.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import { numberToPrice } from '@/utils/numberFormat'
-import useInitialState from '@/hooks/useInitialState'
 import { useStore } from '@/context/Store'
 
-const ProductCard = ({ product, handleAddToCart }): JSX.Element => {
-  const { state, dispatch } = useStore()
-
-  console.log(state)
+const ProductCard = ({ product }): JSX.Element => {
+  const { dispatch } = useStore()
 
   return (
     <article className={styles.productCard}>
