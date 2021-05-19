@@ -1,27 +1,44 @@
 import React from 'react'
-import style from '@/styles/components/ProductCard.module.css'
+import styles from '@/styles/components/ProductCard.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
-import { numberToPrice } from '@/utils/numberToPrice'
+import { numberToPrice } from '@/utils/numberFormat'
+import useInitialState from '@/hooks/useInitialState'
+import { useStore } from '@/context/Store'
 
 const ProductCard = ({ product, handleAddToCart }): JSX.Element => {
+  const { state, dispatch } = useStore()
+
+  console.log(state)
+
   return (
-    <article className={style.productCard}>
-      <Link href={`/product/${product.url}`}>
-        <a>
-          <Image
-            src={`${process.env.NEXT_PUBLIC_API_URL}${product.images[0].url}`}
-            width={108}
-            height={144}
-          />
-          <p>{product.name}</p>
-          <p>
-            {numberToPrice(product.price)}{' '}
-            <span className={style.beforePrice}>{numberToPrice(990000)}</span>
-          </p>
+    <article className={styles.productCard}>
+      <Link href={`/product/${product.id}`}>
+        <a className="">
+          {product.images ? (
+            <Image
+              src={product.images[0].url}
+              width={product.images[0].width}
+              height={product.images[0].height}
+            />
+          ) : null}
         </a>
       </Link>
-      <button onClick={() => handleAddToCart(product)}>comparar</button>
+      <div className="px-4 py-2 text-center">
+        <p className="text-xl font-bold">{product.name}</p>
+        <p>
+          {numberToPrice(product.price)}{' '}
+          {product.oldPrice ? (
+            <span className={styles.beforePrice}>{numberToPrice(product.oldPrice)}</span>
+          ) : null}
+        </p>
+      </div>
+      <button
+        onClick={() => dispatch({ type: '@cart/add', payload: product })}
+        className={`${styles.addToCart} btn-1`}
+      >
+        Añadir al carrito
+      </button>
     </article>
   )
 }

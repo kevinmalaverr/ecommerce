@@ -1,25 +1,27 @@
 import { AppProps } from 'next/app'
 import '../styles/globals.css'
-import AppContext from '../context/AppContext'
-import useInitialState from '../hooks/useInitialState'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { fetchData } from 'utils/fetchData'
-import cart from './cart'
+import { productsToSearchList } from 'utils/transformData'
+import { cartReducers } from 'context/reducers'
+import Store from 'context/Store'
 
-function App({ Component, pageProps, initialState }) {
-  const intialState = useInitialState(initialState)
+Store.addReducers(cartReducers)
+function App({ Component, pageProps, initialState }): JSX.Element {
   return (
-    <AppContext.Provider value={intialState}>
+    <Store.Provider initialState={initialState}>
       <Header />
       <Component {...pageProps} />
-      <Footer></Footer>
-    </AppContext.Provider>
+      <Footer />
+    </Store.Provider>
   )
 }
+
 App.getInitialProps = async () => {
   const data = await fetchData('products')
-  return { initialState: { products: data, cart: [] } }
+  const searchList = productsToSearchList(data)
+  return { initialState: { products: data, searchList, cart: [] } }
 }
 
 export default App

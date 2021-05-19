@@ -7,34 +7,36 @@ import { fetchData } from '@/utils/fetchData'
 import WhatsAppWidget from 'react-whatsapp-widget'
 import 'react-whatsapp-widget/dist/index.css'
 
-export default function Home() {
+export default function Home({ productPinned }): JSX.Element {
   return (
     <div>
       <Head>
-        <title>furniture</title>
+        <title>Muebles Willys</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Hero />
+      <Hero productPinned={productPinned} />
       <main className="container">
+        <h2 className="text-2xl font-bold font-playfair my-6 text-center">
+          Explora nuestros muebles
+        </h2>
         <ProductList />
-        <WhatsAppWidget
-          textReplyTime="activo"
-          companyName="Muebles Willys"
-          message={`¡Hola! 👋🏼\n¿En qué te puedo ayudar?`}
-          sendButton="Enviar"
-          phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_PHONE}
-        />
       </main>
+      <WhatsAppWidget
+        textReplyTime="activo"
+        companyName="Muebles Willys"
+        message={`¡Hola! 👋🏼\n¿En qué te puedo ayudar?`}
+        sendButton="Enviar"
+        phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_PHONE}
+      />
     </div>
   )
 }
 
-export async function getStaticProps(): Promise<{ props: { products: Array<any> } }> {
-  const data = await fetchData('products')
-
+export async function getStaticProps(): Promise<{ props: object }> {
+  const productPinned = await fetchData('product-pinned')
   return {
     props: {
-      products: data,
-    }, // will be passed to the page component as props
+      productPinned,
+    },
   }
 }

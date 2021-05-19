@@ -1,24 +1,37 @@
 import React from 'react'
 import styles from '@/styles/components/Hero.module.css'
 import Image from 'next/image'
+import Link from 'next/link'
+import { numberToPrice } from 'utils/numberFormat'
 
-const Hero = (): JSX.Element => {
+const Hero = ({ productPinned }: { productPinned: any }): JSX.Element => {
   return (
     <section className={styles.heroContainer}>
       <div className={styles.hero}>
         <div className={styles.text}>
           <h2>
-            <b>Nuevos productos</b>
+            <b>{productPinned.label}</b>
           </h2>
-          <h1>Nombre mueble</h1>
+          <h1>{productPinned.product.name}</h1>
           <h2>
-            DESDE <b className={styles.price}>$990.000</b>
+            DESDE <b className={styles.price}>{numberToPrice(productPinned.product.price)}</b>
           </h2>
-          <button className="btn-1 my-8">Comprar Ahora</button>
+          <div>
+            <Link href={`/product/${productPinned.product.id}`}>
+              <a className="btn-1 my-6">Comprar ahora</a>
+            </Link>
+          </div>
         </div>
-        <Image src="/images/hero.jpg" width={2000} height={1200}></Image>
+        {productPinned.product.images.length > 0 ? (
+          <Image
+            src={productPinned.product.images[0].url}
+            width={productPinned.product.images[0].width}
+            height={productPinned.product.images[0].height}
+          />
+        ) : null}
       </div>
     </section>
   )
 }
+
 export default Hero

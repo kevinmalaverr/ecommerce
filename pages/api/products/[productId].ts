@@ -28,3 +28,5 @@ const postProductId = (req: NextApiRequest, res: NextApiResponse): void => {
 
   res.status(200).json({ name: productId })
 }
+
+const ele = {}

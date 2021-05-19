@@ -1,13 +1,11 @@
-import { useContext } from 'react'
 import Link from 'next/link'
-import AppContext from 'context/AppContext'
-import { access } from 'fs'
+import { useStore } from '@/context/Store'
 
 const cart = () => {
   const {
     state: { cart },
-    removeFromCart,
-  } = useContext(AppContext)
+    dispatch,
+  } = useStore()
 
   const handleSumTotal = () => {
     const reducer = (accumulator, currentValue) => accumulator + currentValue.price
@@ -25,7 +23,7 @@ const cart = () => {
               <h4>{item.title}</h4>
               <span>${item.price}</span>
             </div>
-            <button type="button" onClick={() => removeFromCart(item)}>
+            <button type="button" onClick={() => dispatch({ type: '@cart/remove', payload: item })}>
               <i className="fas fa-trash-alt" />
             </button>
           </div>

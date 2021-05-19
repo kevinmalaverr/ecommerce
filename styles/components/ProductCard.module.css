@@ -1,9 +1,22 @@
 .productCard {
-  background-color: var(--color-light-blue);
+  background-color: var(--color-grey);
   border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.image {
+  width: 100% !important;
 }
 
 .beforePrice{
   color: gray;
   text-decoration: line-through;
+}
+
+.addToCart {
+  width: 100%;
+  padding: .6rem;
+  z-index: 100;
+  position: relative;
 }

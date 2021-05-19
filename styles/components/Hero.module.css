@@ -10,6 +10,7 @@
 .heroContainer {  
   background-color: var(--color-light-blue);
   padding: 3rem 1rem;
+  margin-bottom: 2rem;
 }
 
 .text h1{
@@ -28,7 +29,11 @@
     text-align:left;
   }
 
-  .hero > div {
-    width: 50%;
+  .hero > div:first-child {
+    width: 40%;
+  }
+
+  .hero > div:last-child {
+    width: 60%;
   }
 }
