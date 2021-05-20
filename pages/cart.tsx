@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { useStore } from '@/context/Store'
+import { useEffect, useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
-const cart = () => {
+const Cart = () => {
   const {
     state: { cart },
     dispatch,
@@ -11,6 +13,23 @@ const cart = () => {
     const reducer = (accumulator, currentValue) => accumulator + currentValue.price
     const sum = cart.reduce(reducer, 0)
     return sum
+  }
+
+  const paid = () => {
+    const checkout = new WidgetCheckout({
+      currency: 'COP',
+      amountInCents: 2490000,
+      reference: 'AD002901221',
+      publicKey: process.env.NEXT_PUBLIC_WOMPI_KEY,
+      redirectUrl: 'https://transaction-redirect.wompi.co/check', // Opcional
+    })
+
+    const reference = uuidv4()
+    console.log(reference)
+
+    checkout.open((result) => {
+      console.log(result)
+    })
   }
 
   return (
@@ -37,11 +56,12 @@ const cart = () => {
           </Link>
         </div>
       )}
+      <button onClick={paid}>pagar</button>
     </div>
   )
 }
 
-export default cart
+export default Cart
 
 export async function getStaticProps(): Promise<{ props: object }> {
   return { props: { title: 'My Title', content: '...' } }

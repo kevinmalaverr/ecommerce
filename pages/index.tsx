@@ -6,6 +6,7 @@ import { fetchData } from '@/utils/fetchData'
 
 import WhatsAppWidget from 'react-whatsapp-widget'
 import 'react-whatsapp-widget/dist/index.css'
+import Services from '@/components/Services'
 
 export default function Home({ productPinned }): JSX.Element {
   return (
@@ -20,6 +21,8 @@ export default function Home({ productPinned }): JSX.Element {
           Explora nuestros muebles
         </h2>
         <ProductList />
+        <h2 className="text-2xl font-bold font-playfair my-6 text-center">Servicios</h2>
+        <Services />
       </main>
       <WhatsAppWidget
         textReplyTime="activo"
