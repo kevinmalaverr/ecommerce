@@ -28,9 +28,9 @@ button:focus {
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 100%;
   max-width: 1000px;
+  min-height: calc(100vh - 100px);
   margin: auto;
 }
 

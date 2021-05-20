@@ -1,19 +1,15 @@
 import Link from 'next/link'
 import { useStore } from '@/context/Store'
-import { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import CartItem from 'components/CartItem'
 
 const Cart = () => {
-  const {
-    state: { cart },
-    dispatch,
-  } = useStore()
-
-  console.log(cart)
+  const { state } = useStore()
 
   const handleSumTotal = () => {
-    const reducer = (accumulator, currentValue) => accumulator + currentValue.price
-    const sum = cart.reduce(reducer, 0)
+    const reducer = (accumulator, currentValue) =>
+      accumulator + currentValue.price * currentValue.quantity
+    const sum = state.cart.reduce(reducer, 0)
     return sum
   }
 
@@ -22,7 +18,8 @@ const Cart = () => {
       currency: 'COP',
       amountInCents: handleSumTotal() * 100,
       reference: uuidv4(),
-      publicKey: process.env.NEXT_PUBLIC_WOMPI_KEY, // Opcional
+      publicKey: process.env.NEXT_PUBLIC_WOMPI_KEY,
+      redirectUrl: process.env.NEXT_PUBLIC_URL,
     })
 
     checkout.open((result) => {
@@ -31,30 +28,45 @@ const Cart = () => {
   }
 
   return (
-    <div className="Checkout">
-      <div className="Checkout-content">
-        {cart.length > 0 ? <h3>Lista de pedidos:</h3> : <h3>Sin pedidos...</h3>}
-        {cart.map((item) => (
-          <div key={item.id} className="Checkout-item">
-            <div className="Checkout-element">
-              <h4>{item.title}</h4>
-              <span>${item.price}</span>
+    <div>
+      <main className="container">
+        <div className="flex">
+          <div className="flex-1">
+            <div className="cart__table-head">
+              <div className="text-xl">
+                <strong>Item</strong>
+              </div>
+              <div className="text-xl">
+                <strong>Cantidad</strong>
+              </div>
+              <div className="text-xl">
+                <strong>Precio</strong>
+              </div>
+              <div></div>
             </div>
-            <button type="button" onClick={() => dispatch({ type: '@cart/remove', payload: item })}>
-              <i className="fas fa-trash-alt" />
+            <div className="cart__content custom-scroll">
+              {state.cart.length > 0 ? (
+                <div className="cart__items">
+                  {state.cart.map((item) => (
+                    <CartItem key={item.id} {...item} />
+                  ))}
+                </div>
+              ) : (
+                <h3 className="text-color-green">
+                  <center>Aún no tienes productos agregados a tu carrito de compras</center>
+                </h3>
+              )}
+            </div>
+          </div>
+          <div className="cart__total">
+            <h2>Total:</h2>
+            <p>$ {handleSumTotal()}</p>
+            <button onClick={paid} className="btn-1 w-full">
+              Pagar
             </button>
           </div>
-        ))}
-      </div>
-      {cart.length > 0 && (
-        <div className="Checkout-sidebar">
-          <h3>{`Precio Total: $ ${handleSumTotal()}`}</h3>
-          <Link href="/checkout/information">
-            <button type="button">Continuar pedido</button>
-          </Link>
         </div>
-      )}
-      <button onClick={paid}>pagar</button>
+      </main>
     </div>
   )
 }

@@ -1,8 +1,19 @@
-export const cartReducers = {
-  '@cart/add': (state, payload) => ({
-    ...state,
-    cart: [...state.cart, payload],
-  }),
+import { addItem, removeItem, updateItem } from '@/utils/cart'
 
-  '@cart/remove': (state, action) => ({}),
+export const cartReducers = {
+  '@cart/add': addItem,
+
+  '@cart/remove': removeItem,
+
+  '@cart/increment': (state, payload) =>
+    updateItem(state, payload, (item) => ({
+      ...item,
+      quantity: item.quantity + 1,
+    })),
+
+  '@cart/decrement': (state, payload) =>
+    updateItem(state, payload, (item) => ({
+      ...item,
+      quantity: item.quantity - 1,
+    })),
 }
