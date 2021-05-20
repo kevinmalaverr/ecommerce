@@ -3,9 +3,6 @@ import styles from '@/styles/components/Home.module.css'
 import Hero from '@/components/Hero'
 import ProductList from '@/components/ProductList'
 import { fetchData } from '@/utils/fetchData'
-
-import WhatsAppWidget from 'react-whatsapp-widget'
-import 'react-whatsapp-widget/dist/index.css'
 import Services from '@/components/Services'
 
 export default function Home({ productPinned }): JSX.Element {
@@ -24,13 +21,6 @@ export default function Home({ productPinned }): JSX.Element {
         <h2 className="text-2xl font-bold font-playfair my-6 text-center">Servicios</h2>
         <Services />
       </main>
-      <WhatsAppWidget
-        textReplyTime="activo"
-        companyName="Muebles Willys"
-        message={`¡Hola! 👋🏼\n¿En qué te puedo ayudar?`}
-        sendButton="Enviar"
-        phoneNumber={process.env.NEXT_PUBLIC_WHATSAPP_PHONE}
-      />
     </div>
   )
 }
