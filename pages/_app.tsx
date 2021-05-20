@@ -6,15 +6,27 @@ import Footer from '../components/Footer'
 import { fetchData } from 'utils/fetchData'
 import { productsToSearchList } from 'utils/transformData'
 import { cartReducers } from 'context/reducers'
-import Store from 'context/Store'
+import Store, { useStore } from 'context/Store'
+import { useEffect } from 'react'
 
 Store.addReducers(cartReducers)
+
+const LoadStorage = ({ children }) => {
+  const { dispatch } = useStore()
+  useEffect(() => {
+    dispatch({ type: '@cart/load' })
+  }, [])
+
+  return children
+}
 function App({ Component, pageProps, initialState }): JSX.Element {
   return (
     <Store.Provider initialState={initialState}>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <LoadStorage>
+        <Header />
+        <Component {...pageProps} />
+        <Footer />
+      </LoadStorage>
     </Store.Provider>
   )
 }

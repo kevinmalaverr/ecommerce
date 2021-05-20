@@ -1,6 +1,8 @@
-import { addItem, removeItem, updateItem } from '@/utils/cart'
+import { loadItems, addItem, removeItem, updateItem } from '@/utils/cart'
 
 export const cartReducers = {
+  '@cart/load': loadItems,
+
   '@cart/add': addItem,
 
   '@cart/remove': removeItem,

@@ -9,10 +9,12 @@ function findItem(arr, id) {
  */
 export function removeItem(state, id) {
   const itemIndex = findItem(state.cart, id)
-  return {
+  const newState = {
     ...state,
     cart: [...state.cart.slice(0, itemIndex), ...state.cart.slice(itemIndex + 1)],
   }
+  setLocalStorage(newState.cart)
+  return newState
 }
 
 /**
@@ -25,7 +27,7 @@ export function removeItem(state, id) {
 export function updateItem(state, id, update) {
   const itemIndex = findItem(state.cart, id)
 
-  return {
+  const newState = {
     ...state,
     cart: [
       ...state.cart.slice(0, itemIndex),
@@ -33,6 +35,10 @@ export function updateItem(state, id, update) {
       ...state.cart.slice(itemIndex + 1),
     ],
   }
+
+  setLocalStorage(newState.cart)
+
+  return newState
 }
 
 /**
@@ -45,7 +51,7 @@ export function addItem(state, item) {
   const itemIndex = findItem(state.cart, item.id)
 
   if (itemIndex >= 0) {
-    return {
+    const newState = {
       ...state,
       cart: [
         ...state.cart.slice(0, itemIndex),
@@ -53,10 +59,23 @@ export function addItem(state, item) {
         ...state.cart.slice(itemIndex + 1),
       ],
     }
+    setLocalStorage(newState.cart)
+    return newState
   }
 
-  return {
+  const newState = {
     ...state,
     cart: [...state.cart, { ...item, quantity: 1 }],
   }
+  setLocalStorage(newState.cart)
+  return newState
+}
+
+function setLocalStorage(cart) {
+  window.localStorage.setItem('cart', JSON.stringify(cart))
+}
+
+export function loadItems(state) {
+  const cart = JSON.parse(window.localStorage.getItem('cart')) || []
+  return { ...state, cart }
 }

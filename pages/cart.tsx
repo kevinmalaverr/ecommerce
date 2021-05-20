@@ -19,7 +19,7 @@ const Cart = () => {
       amountInCents: handleSumTotal() * 100,
       reference: uuidv4(),
       publicKey: process.env.NEXT_PUBLIC_WOMPI_KEY,
-      redirectUrl: process.env.NEXT_PUBLIC_URL,
+      redirectUrl: process.env.NEXT_PUBLIC_URL + '/success',
     })
 
     checkout.open((result) => {
