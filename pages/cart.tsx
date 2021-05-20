@@ -9,6 +9,8 @@ const Cart = () => {
     dispatch,
   } = useStore()
 
+  console.log(cart)
+
   const handleSumTotal = () => {
     const reducer = (accumulator, currentValue) => accumulator + currentValue.price
     const sum = cart.reduce(reducer, 0)
@@ -18,14 +20,10 @@ const Cart = () => {
   const paid = () => {
     const checkout = new WidgetCheckout({
       currency: 'COP',
-      amountInCents: 2490000,
-      reference: 'AD002901221',
-      publicKey: process.env.NEXT_PUBLIC_WOMPI_KEY,
-      redirectUrl: 'https://transaction-redirect.wompi.co/check', // Opcional
+      amountInCents: handleSumTotal() * 100,
+      reference: uuidv4(),
+      publicKey: process.env.NEXT_PUBLIC_WOMPI_KEY, // Opcional
     })
-
-    const reference = uuidv4()
-    console.log(reference)
 
     checkout.open((result) => {
       console.log(result)

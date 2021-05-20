@@ -18,7 +18,8 @@ function App({ Component, pageProps, initialState }): JSX.Element {
 }
 
 App.getInitialProps = async () => {
-  const data = await fetchData('products')
+  let data = await fetchData('products')
+  data = data.map((product) => ({ ...product, price: parseInt(product.price) }))
   const searchList = productsToSearchList(data)
   return { initialState: { products: data, searchList, cart: [] } }
 }
