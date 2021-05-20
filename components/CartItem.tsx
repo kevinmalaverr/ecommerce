@@ -30,7 +30,7 @@ const CartItem = (props) => {
           <img className="cart-item__img" src={images[0].url} alt={name} />
         </div>
         <div>
-          <div className="text-2xl">{name}</div>
+          <div className="text-xl">{name}</div>
         </div>
       </div>
       <div className="cart-item__qty">
